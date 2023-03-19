@@ -14,10 +14,13 @@ public class Player : MonoBehaviour
     public GameObject sprite;
     public Transform firePoint;
     public bool isRight = false;
+    public Rigidbody2D rb;
+    public float updateSpeed = 20;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(ShootProjectiles());
+        StartCoroutine(AutomateManualUpdate());
     }
 
     IEnumerator ShootProjectiles(){
@@ -56,14 +59,26 @@ public class Player : MonoBehaviour
         return targetEnemy;
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator AutomateManualUpdate(){
+        while(true){
+            yield return new WaitForSeconds(1f / updateSpeed);
+            ManualUpdate();
+        }
+    }
+
+    void ManualUpdate()
     {
         //move player
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 direction = new Vector2(x, y).normalized;
-        transform.Translate(direction * moveSpeed * Time.deltaTime);
+        //add force
+        rb.velocity = rb.velocity / 1.2f;
+        rb.AddForce(direction * moveSpeed * updateSpeed);
+        //cap velocity
+        if(rb.velocity.magnitude > moveSpeed){
+            rb.velocity = rb.velocity.normalized * moveSpeed;
+        }
         //shoot projectiles
         if(Input.GetKeyDown(KeyCode.Space)){
             StartCoroutine(ShootProjectiles());

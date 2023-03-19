@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 17250538812269625}
   - component: {fileID: -7025903320385673217}
   - component: {fileID: 6858827249723950255}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fat Goblin
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -52,7 +52,10 @@ MonoBehaviour:
   currentWaypoint: 0
   hp: 25
   distance: 0
+  moneyOnDeath: 3
   sprite: {fileID: 6483724981732242018}
+  deathCoin: {fileID: 4189879942782351902, guid: 4c0b32d5dfb760744aa041368414c397, type: 3}
+  coinSpewForce: 35
 --- !u!61 &-7025903320385673217
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -109,7 +112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945116303276409411}
   - component: {fileID: 646572030406761545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
