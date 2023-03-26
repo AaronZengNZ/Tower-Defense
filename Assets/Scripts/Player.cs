@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public Transform firePoint;
     public bool isRight = false;
     public Rigidbody2D rb;
+    public GameObject rangeIndicator;
     public float updateSpeed = 20;
     // Start is called before the first frame update
     void Start()
@@ -68,12 +69,14 @@ public class Player : MonoBehaviour
 
     void ManualUpdate()
     {
+        //update range indicator
+        rangeIndicator.transform.localScale = new Vector3(range * 1.9f, range * 1.9f, 1);
         //move player
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         Vector2 direction = new Vector2(x, y).normalized;
         //add force
-        rb.velocity = rb.velocity / 1.2f;
+        rb.velocity = rb.velocity / 1.5f;
         rb.AddForce(direction * moveSpeed * updateSpeed);
         //cap velocity
         if(rb.velocity.magnitude > moveSpeed){

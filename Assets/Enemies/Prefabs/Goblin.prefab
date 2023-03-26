@@ -55,7 +55,7 @@ MonoBehaviour:
   moneyOnDeath: 1
   sprite: {fileID: 6483724981732242018}
   deathCoin: {fileID: 4189879942782351902, guid: 4c0b32d5dfb760744aa041368414c397, type: 3}
-  coinSpewForce: 35
+  coinSpewForce: 7
 --- !u!61 &-7025903320385673217
 BoxCollider2D:
   m_ObjectHideFlags: 0

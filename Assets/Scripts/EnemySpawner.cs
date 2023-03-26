@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public Wave[] waves;
     public float waveNum = 1f;
     float enemiesLeft = 0f;
+    public UpgradeScript upgrades;
+    bool upgrading = false;
+    public string[] upgradeRarities;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,15 +35,19 @@ public class EnemySpawner : MonoBehaviour
                 if(GameObject.FindGameObjectsWithTag("Enemy").Length > 0){
                     continue;
                 }
-                if(waveNum < waves.Length){
-                    waveNum++;
-                    UpdateValuesToWave();
-                }
-                else{
-                    Debug.Log("You Win!");
-                    break;
+                else if(upgrading == false){
+                    upgrading = true;
+                    upgrades.InstantiateUpgrades("common", upgradeRarities[(int)waveNum - 1], "common");
                 }
             }
+        }
+    }
+
+    public void NextWave(){
+        if(waveNum < waves.Length){
+            waveNum++;
+            UpdateValuesToWave();
+            upgrading = false;
         }
     }
 

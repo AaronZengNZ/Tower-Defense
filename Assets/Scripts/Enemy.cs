@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
                 currentWaypoint += 1f;
             }
             //flip sprite according to waypoint direction
+            if(currentWaypoint < waypoints.Length){
             if(waypoints[(int)currentWaypoint] != null){
                 if(waypoints[(int)currentWaypoint].transform.position.x > transform.position.x){
                     sprite.transform.localScale = new Vector3(1, 1, 1);
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
                 else if(waypoints[(int)currentWaypoint].transform.position.x < transform.position.x){
                     sprite.transform.localScale = new Vector3(-1, 1, 1);
                 }
+            }
             }
         }
         else{
