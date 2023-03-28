@@ -15,7 +15,7 @@ public class EnemySpawner : MonoBehaviour
     float enemiesLeft = 0f;
     public UpgradeScript upgrades;
     bool upgrading = false;
-    public string[] upgradeRarities;
+    public float[] upgradeRarities;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else if(upgrading == false){
                     upgrading = true;
-                    upgrades.InstantiateUpgrades("common", upgradeRarities[(int)waveNum - 1], "common");
+                    upgrades.InstantiateUpgrades(upgradeRarities[(int)waveNum - 1]);
                 }
             }
         }

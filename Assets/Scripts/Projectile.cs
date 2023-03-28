@@ -8,6 +8,8 @@ public class Projectile : MonoBehaviour
     public Transform target;
     public float speed = 25f;
     public float damage = 1f;
+    public float freezeEffect = 0f;
+    public float stun = 0f;
     public Player playerScript;
     public float turnSpeed = 5f;
     public Rigidbody2D rb;
@@ -15,9 +17,15 @@ public class Projectile : MonoBehaviour
     public SpriteRenderer spriteRenderer;
 
     public bool homing = false;
-    public float noTurning = 10f;
+    public float noTurning = 6f;
+    public float burnDamage = 0f;
 
     void Start(){
+        //set size to damage
+        float size;
+        //make size the log3 of damage
+        size = ((float)Math.Log((damage+7), 10));
+        transform.localScale = new Vector3(-size, size, 1);
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(ManualUpdateAutomator());
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -78,8 +86,14 @@ public class Projectile : MonoBehaviour
     // on collision with tag enemy, hit target
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Enemy"){
-            UnityEngine.Debug.Log("hit");
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            other.gameObject.GetComponent<Enemy>().Freeze(freezeEffect);
+            if(stun > 0){
+                other.gameObject.GetComponent<Enemy>().Stun(stun);
+            }
+            if(burnDamage > 0){
+                other.gameObject.GetComponent<Enemy>().Burn(burnDamage);
+            }
             Destroy(gameObject);
         }
     }

@@ -17,6 +17,10 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject rangeIndicator;
     public float updateSpeed = 20;
+    public float freezeEffect = 0f;
+    public float stun = 0f;
+    public float burnDamage = 0f;
+    public bool homing = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,10 @@ public class Player : MonoBehaviour
             proj.GetComponent<Projectile>().damage = damage;
             proj.GetComponent<Projectile>().speed = projectileSpeed;
             proj.GetComponent<Projectile>().playerScript = this;
+            proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
+            proj.GetComponent<Projectile>().stun = stun;
+            proj.GetComponent<Projectile>().burnDamage = burnDamage;
+            proj.GetComponent<Projectile>().homing = homing;
         }
     }
 

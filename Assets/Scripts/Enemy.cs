@@ -13,10 +13,32 @@ public class Enemy : MonoBehaviour
     public GameObject sprite;
     public GameObject deathCoin;
     public float coinSpewForce = 3f;
+    public float burningDamage = 1f;
+    public float burningTimeLeft = 0f;
+    bool stunned = false;
+    public float freezeStacks = 0f;
+    public ParticleSystem fireEffect;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = waypoints[0].transform.position;
+        StartCoroutine(BurnCoroutine());
+    }
+
+    public void Burn(float damage){
+        burningTimeLeft = 3f;
+        burningDamage = damage;
+    }
+
+    IEnumerator BurnCoroutine(){
+        while(true){
+            if(burningTimeLeft > 0){
+                hp -= burningDamage;
+                burningTimeLeft -= 0.3f;
+                fireEffect.Play();
+            }
+            yield return new WaitForSeconds(0.3f);
+        }
     }
 
     // go through waypoints
@@ -27,6 +49,28 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         distance++;
+    }
+
+    public void Stun(float time){
+        if(stunned == false){
+            StartCoroutine(StunCoroutine(time));
+        }
+    }
+
+    IEnumerator StunCoroutine(float time){
+        stunned = true;
+        float temp = moveSpeed;
+        moveSpeed = 0f;
+        yield return new WaitForSeconds(time);
+        moveSpeed = temp;
+        stunned = false;
+    }
+
+    public void Freeze(float amount){
+        if(freezeStacks < 5){
+            moveSpeed = moveSpeed / (1 + amount/100);
+            freezeStacks++;
+        }
     }
 
     public void Move(){

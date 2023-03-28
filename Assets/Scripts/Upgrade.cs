@@ -10,12 +10,13 @@ public class Upgrade : MonoBehaviour
     public float debuffAmount;
     public bool hasDebuff = false;
     public UpgradeScript upgradeManager;
-
+    public bool oneBuy = false;
+    public string rarity = "common";
     void Start(){
         upgradeManager = GameObject.Find("Upgrade Manager").GetComponent<UpgradeScript>();
     }
     
     public void TakeUpgrade(){
-        upgradeManager.HandleUpgrade(buffEffect, buffAmount, debuffEffect, debuffAmount, hasDebuff);
+        upgradeManager.HandleUpgrade(buffEffect, buffAmount, debuffEffect, debuffAmount, hasDebuff, this.gameObject, rarity);
     }
 }
