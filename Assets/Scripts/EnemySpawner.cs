@@ -2,6 +2,8 @@ using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -17,11 +19,14 @@ public class EnemySpawner : MonoBehaviour
     bool upgrading = false;
     public float[] upgradeRarities;
     public SceneManager sceneManager;
+    public TextMeshProUGUI waveText;
+
     // Start is called before the first frame update
     void Start()
     {
         UpdateValuesToWave();
         StartCoroutine(SpawnEnemies());
+        StartCoroutine(WaveTextFade());
     }
 
     IEnumerator SpawnEnemies(){
@@ -54,6 +59,21 @@ public class EnemySpawner : MonoBehaviour
             waveNum++;
             UpdateValuesToWave();
             upgrading = false;
+            StartCoroutine(WaveTextFade());
+        }
+    }
+
+    IEnumerator WaveTextFade(){
+        waveText.text = "Wave " + waveNum;
+        waveText.color = new Color(1, 1, 1, 0);
+        while(waveText.color.a < 1){
+            waveText.color = new Color(1, 1, 1, waveText.color.a + 0.01f);
+            yield return new WaitForSeconds(0.01f);
+        }
+        yield return new WaitForSeconds(1f);
+        while(waveText.color.a > 0){
+            waveText.color = new Color(1, 1, 1, waveText.color.a - 0.01f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 

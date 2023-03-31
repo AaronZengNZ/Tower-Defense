@@ -20,6 +20,7 @@ public class Projectile : MonoBehaviour
     public bool homing = false;
     public float noTurning = 10f;
     public float burnDamage = 0f;
+    public GameObject damageText;
 
     void Start(){
         //set size to damage
@@ -93,6 +94,9 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other) {
         if(other.gameObject.tag == "Enemy"){
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
+            //instantiate a damage text at 0 degrees rotation
+            GameObject damageTextInstance = Instantiate(damageText, this.transform.position, Quaternion.Euler(0, 0, 0));
+            damageTextInstance.GetComponent<DamageText>().number = damage;
             other.gameObject.GetComponent<Enemy>().Freeze(freezeEffect);
             if(stun > 0){
                 other.gameObject.GetComponent<Enemy>().Stun(stun);

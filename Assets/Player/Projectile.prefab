@@ -112,6 +112,7 @@ MonoBehaviour:
   homing: 0
   noTurning: 10
   burnDamage: 0
+  damageText: {fileID: 5473043425520070282, guid: 1da0628ba6d99c84b8d1814bb9d932a5, type: 3}
 --- !u!58 &5780303902236623420
 CircleCollider2D:
   m_ObjectHideFlags: 0
