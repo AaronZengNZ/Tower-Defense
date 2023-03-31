@@ -851,6 +851,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   oneBuy: 1
   rarity: epic
+  name: redirect
 --- !u!1 &7286202439897285219
 GameObject:
   m_ObjectHideFlags: 0

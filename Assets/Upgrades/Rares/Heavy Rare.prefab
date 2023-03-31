@@ -753,6 +753,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   oneBuy: 0
   rarity: rare
+  name: heavy
 --- !u!1 &8025284082646925897
 GameObject:
   m_ObjectHideFlags: 0

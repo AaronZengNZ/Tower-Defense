@@ -18,11 +18,13 @@ public class Enemy : MonoBehaviour
     bool stunned = false;
     public float freezeStacks = 0f;
     public ParticleSystem fireEffect;
+    public SceneManager sceneManagerScript;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = waypoints[0].transform.position;
         StartCoroutine(BurnCoroutine());
+        sceneManagerScript = GameObject.Find("SceneManager").GetComponent<SceneManager>();
     }
 
     public void Burn(float damage){
@@ -33,7 +35,7 @@ public class Enemy : MonoBehaviour
     IEnumerator BurnCoroutine(){
         while(true){
             if(burningTimeLeft > 0){
-                hp -= burningDamage;
+                TakeDamage(burningDamage);
                 burningTimeLeft -= 0.3f;
                 fireEffect.Play();
             }
@@ -75,7 +77,7 @@ public class Enemy : MonoBehaviour
 
     public void Move(){
         if(currentWaypoint < waypoints.Length){
-            transform.position = Vector2.MoveTowards(transform.position, waypoints[(int)currentWaypoint].transform.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, waypoints[(int)currentWaypoint].transform.position, moveSpeed * UnityEngine.Time.deltaTime);
             //if distance to waypoint is less than 0.1f, go to next waypoint
             if(Vector2.Distance(transform.position, waypoints[(int)currentWaypoint].transform.position) < 0.1f){
                 currentWaypoint += 1f;
@@ -94,6 +96,8 @@ public class Enemy : MonoBehaviour
         }
         else{
             moneyOnDeath = 0f;
+            //call lose
+            sceneManagerScript.Lose();
             Destroy(gameObject);
         }
     }

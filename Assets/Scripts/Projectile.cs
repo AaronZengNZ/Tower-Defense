@@ -11,18 +11,20 @@ public class Projectile : MonoBehaviour
     public float freezeEffect = 0f;
     public float stun = 0f;
     public Player playerScript;
+    public CircleCollider2D circleCollider;
     public float turnSpeed = 5f;
     public Rigidbody2D rb;
     //get the sprite renderer
     public SpriteRenderer spriteRenderer;
 
     public bool homing = false;
-    public float noTurning = 6f;
+    public float noTurning = 10f;
     public float burnDamage = 0f;
 
     void Start(){
         //set size to damage
         float size;
+        circleCollider.enabled = false;
         //make size the log3 of damage
         size = ((float)Math.Log((damage+7), 10));
         transform.localScale = new Vector3(-size, size, 1);
@@ -47,9 +49,13 @@ public class Projectile : MonoBehaviour
     void ManualUpdate()
     {
         if(noTurning >= 0){
-            noTurning -= 1;
+            noTurning -= speed;
             rb.velocity = transform.right * speed;
             return;
+        }
+        if(noTurning <= 0 && noTurning > -1000){
+            noTurning = -10000;
+            circleCollider.enabled = true;
         }
         //rb.velocity = rb.velocity / 1.2f;
         if(target == null){

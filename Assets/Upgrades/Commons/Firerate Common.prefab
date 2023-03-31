@@ -1214,3 +1214,6 @@ MonoBehaviour:
   debuffAmount: 0
   hasDebuff: 0
   upgradeManager: {fileID: 0}
+  oneBuy: 0
+  rarity: common
+  name: firerate

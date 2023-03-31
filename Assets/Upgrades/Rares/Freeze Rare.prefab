@@ -619,6 +619,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 0}
   oneBuy: 1
   rarity: rare
+  name: freeze
 --- !u!1 &3944069242287366355
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,7 @@ public class Upgrade : MonoBehaviour
     public UpgradeScript upgradeManager;
     public bool oneBuy = false;
     public string rarity = "common";
+    public string name = "null";
     void Start(){
         upgradeManager = GameObject.Find("Upgrade Manager").GetComponent<UpgradeScript>();
     }

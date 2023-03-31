@@ -693,8 +693,9 @@ MonoBehaviour:
   debuffAmount: 0
   hasDebuff: 0
   upgradeManager: {fileID: 0}
-  oneBuy: 0
+  oneBuy: 1
   rarity: epic
+  name: stun
 --- !u!1 &7708978840701324228
 GameObject:
   m_ObjectHideFlags: 0

@@ -159,6 +159,9 @@ public class UpgradeScript : MonoBehaviour
         if(upgrade == "homing"){
             playerScript.homing = true;
         }
+        if(upgrade == "multishot"){
+            playerScript.multishot += amount;
+        }
         //debuffs
         if(hasDebuff == true){
             if(debuff == "damage"){
@@ -182,10 +185,11 @@ public class UpgradeScript : MonoBehaviour
             if(rarity == "common"){
                 GameObject[] previous = commonUpgradeSelection;
                 commonUpgradeSelection = new GameObject[commonUpgradeSelection.Length - 1];
-                float temp = 0f;
-                for(int i = 0; i < commonUpgradeSelection.Length; i++){
-                    if(previous[i] != upgradeSelected){
-                        commonUpgradeSelection[i] = previous[(int)temp];
+                float temp = 0;
+                for(int i = 0; i <= commonUpgradeSelection.Length; i++){
+                    //if the Upgrade script's name is the same as the upgrade selected's name, skip it
+                    if(previous[i].GetComponent<Upgrade>().name != upgradeSelected.GetComponent<Upgrade>().name){
+                        commonUpgradeSelection[(int)temp] = previous[i];
                         temp++;
                     }
                 }
@@ -193,10 +197,11 @@ public class UpgradeScript : MonoBehaviour
             if(rarity == "rare"){
                 GameObject[] previous = rareUpgradeSelection;
                 rareUpgradeSelection = new GameObject[rareUpgradeSelection.Length - 1];
-                float temp = 0f;
-                for(int i = 0; i < rareUpgradeSelection.Length; i++){
-                    if(previous[i] != upgradeSelected){
-                        rareUpgradeSelection[i] = previous[(int)temp];
+                float temp = 0;
+                for(int i = 0; i <= rareUpgradeSelection.Length; i++){
+                    //if the Upgrade script's name is the same as the upgrade selected's name, skip it
+                    if(previous[i].GetComponent<Upgrade>().name != upgradeSelected.GetComponent<Upgrade>().name){
+                        rareUpgradeSelection[(int)temp] = previous[i];
                         temp++;
                     }
                 }
@@ -204,10 +209,11 @@ public class UpgradeScript : MonoBehaviour
             if(rarity == "epic"){
                 GameObject[] previous = epicUpgradeSelection;
                 epicUpgradeSelection = new GameObject[epicUpgradeSelection.Length - 1];
-                float temp = 0f;
-                for(int i = 0; i < epicUpgradeSelection.Length; i++){
-                    if(previous[i] != upgradeSelected){
-                        epicUpgradeSelection[i] = previous[(int)temp];
+                float temp = 0;
+                for(int i = 0; i <= epicUpgradeSelection.Length; i++){
+                    //if the Upgrade script's name is the same as the upgrade selected's name, skip it
+                    if(previous[i].GetComponent<Upgrade>().name != upgradeSelected.GetComponent<Upgrade>().name){
+                        epicUpgradeSelection[(int)temp] = previous[i];
                         temp++;
                     }
                 }
@@ -215,10 +221,11 @@ public class UpgradeScript : MonoBehaviour
             if(rarity == "legendary"){
                 GameObject[] previous = legendaryUpgradeSelection;
                 legendaryUpgradeSelection = new GameObject[legendaryUpgradeSelection.Length - 1];
-                float temp = 0f;
-                for(int i = 0; i < legendaryUpgradeSelection.Length; i++){
-                    if(previous[i] != upgradeSelected){
-                        legendaryUpgradeSelection[i] = previous[(int)temp];
+                float temp = 0;
+                for(int i = 0; i <= legendaryUpgradeSelection.Length; i++){
+                    //if the Upgrade script's name is the same as the upgrade selected's name, skip it
+                    if(previous[i].GetComponent<Upgrade>().name != upgradeSelected.GetComponent<Upgrade>().name){
+                        legendaryUpgradeSelection[(int)temp] = previous[i];
                         temp++;
                     }
                 }

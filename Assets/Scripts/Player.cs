@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public float stun = 0f;
     public float burnDamage = 0f;
     public bool homing = false;
+    public float multishot = 1f;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,15 +38,18 @@ public class Player : MonoBehaviour
 
     public void ShootProjectile(){
         if(GetClosestEnemy(this.transform)){
-            GameObject proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
-            proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
-            proj.GetComponent<Projectile>().damage = damage;
-            proj.GetComponent<Projectile>().speed = projectileSpeed;
-            proj.GetComponent<Projectile>().playerScript = this;
-            proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
-            proj.GetComponent<Projectile>().stun = stun;
-            proj.GetComponent<Projectile>().burnDamage = burnDamage;
-            proj.GetComponent<Projectile>().homing = homing;
+            //shoot mutlishot projectiles
+            for(int i = 0; i < multishot; i++){
+                GameObject proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
+                proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
+                proj.GetComponent<Projectile>().damage = damage;
+                proj.GetComponent<Projectile>().speed = projectileSpeed;
+                proj.GetComponent<Projectile>().playerScript = this;
+                proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
+                proj.GetComponent<Projectile>().stun = stun;
+                proj.GetComponent<Projectile>().burnDamage = burnDamage;
+                proj.GetComponent<Projectile>().homing = homing;
+            }
         }
     }
 

@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public UpgradeScript upgrades;
     bool upgrading = false;
     public float[] upgradeRarities;
+    public SceneManager sceneManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,11 @@ public class EnemySpawner : MonoBehaviour
             }
             else{
                 spawnSpeed = 0.1f;
+                if(waveNum == waves.Length){
+                    if(GameObject.FindGameObjectsWithTag("Enemy").Length == 0){
+                        sceneManager.Win();
+                    }
+                }
                 if(GameObject.FindGameObjectsWithTag("Enemy").Length > 0){
                     continue;
                 }
