@@ -59,7 +59,10 @@ MonoBehaviour:
   coinSpewForce: 5
   burningDamage: 1
   burningTimeLeft: 0
+  freezeStacks: 0
   fireEffect: {fileID: 1095683976041478218}
+  sceneManagerScript: {fileID: 0}
+  damageText: {fileID: 5473043425520070282, guid: 1da0628ba6d99c84b8d1814bb9d932a5, type: 3}
 --- !u!61 &-7025903320385673217
 BoxCollider2D:
   m_ObjectHideFlags: 0

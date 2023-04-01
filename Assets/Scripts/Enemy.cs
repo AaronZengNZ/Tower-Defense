@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public float freezeStacks = 0f;
     public ParticleSystem fireEffect;
     public SceneManager sceneManagerScript;
+    public GameObject damageText;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,8 @@ public class Enemy : MonoBehaviour
         while(true){
             if(burningTimeLeft > 0){
                 TakeDamage(burningDamage);
+                GameObject damageTextInstance = Instantiate(damageText, transform.position, Quaternion.identity);
+                damageTextInstance.GetComponent<DamageText>().number = burningDamage;
                 burningTimeLeft -= 0.3f;
                 fireEffect.Play();
             }

@@ -17,7 +17,7 @@ public class DamageText : MonoBehaviour
         StartCoroutine(FadeAway());
     }
     void Update(){
-        text.text = number.ToString();
+        text.text = UnityEngine.Mathf.Ceil(number).ToString();
     }
 
     IEnumerator FadeAway(){

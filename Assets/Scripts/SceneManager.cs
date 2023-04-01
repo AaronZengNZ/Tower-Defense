@@ -7,7 +7,18 @@ public class SceneManager : MonoBehaviour
 {
     public GameObject winCanvas;
     public GameObject loseCanvas;
+    public Fade fadeScript;
+    bool fading = false;
     public void NextScene(){
+        if(fading == false){
+        fading = true;
+        StartCoroutine(fadeNextScene());
+        }   
+    }
+
+    IEnumerator fadeNextScene(){
+        fadeScript.FadeOut();
+        yield return new WaitForSeconds(1);
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         UnityEngine.Time.timeScale = 1;
     }

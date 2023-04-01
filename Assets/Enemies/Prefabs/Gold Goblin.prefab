@@ -4957,6 +4957,8 @@ MonoBehaviour:
   burningTimeLeft: 0
   freezeStacks: 0
   fireEffect: {fileID: 4855380407920990684}
+  sceneManagerScript: {fileID: 0}
+  damageText: {fileID: 5473043425520070282, guid: 1da0628ba6d99c84b8d1814bb9d932a5, type: 3}
 --- !u!61 &320800411368602239
 BoxCollider2D:
   m_ObjectHideFlags: 0
