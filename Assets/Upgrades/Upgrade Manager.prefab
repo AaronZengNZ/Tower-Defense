@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5788478618731178800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5788478618731178802}
+  - component: {fileID: 5788478618731178801}
+  m_Layer: 0
+  m_Name: Upgrade Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5788478618731178802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788478618731178800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5788478618731178801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5788478618731178800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b707b64003ed0124084d0bd8f1f606ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScript: {fileID: 0}
+  shopCanvas: {fileID: 0}
+  upgrades:
+  - {fileID: 0}
+  commonUpgradeSelection:
+  - {fileID: 5537540242620496517, guid: 79af1b23262bc5d44bfa16dc08e28345, type: 3}
+  - {fileID: 7971763026285612326, guid: 6a91cf62679e82d44a69871676befe4f, type: 3}
+  - {fileID: 2290853900472268504, guid: 38a6b63ed2fb120478edda2a9b385869, type: 3}
+  - {fileID: 758841843672908446, guid: 9db9012307f3a124190c2f505828fe29, type: 3}
+  - {fileID: 630621147689441886, guid: f4aa7b05209b49440baabe1ddfc5e32c, type: 3}
+  rareUpgradeSelection:
+  - {fileID: 7555660094713852236, guid: a63c568848ac980458e2fbd2432b8892, type: 3}
+  - {fileID: 3051488876665871606, guid: 5283ff1d59f720d41a14a1273cba34ca, type: 3}
+  - {fileID: 5573884499288578718, guid: 9cfeaf611f9cfc24697de9df4e5aa229, type: 3}
+  - {fileID: 2144582106018393275, guid: bc454f6d42e126e4fb0e7b3b7cfe8328, type: 3}
+  - {fileID: 3944069242090580962, guid: 52d6906b54c5c394b9706dcbd51f1b54, type: 3}
+  epicUpgradeSelection:
+  - {fileID: 6339902209260130926, guid: 1a671981881e7eb4ab4956d252c20382, type: 3}
+  - {fileID: 4084785594399172113, guid: 1b56b6581572ac3408cd6170ee4cdcca, type: 3}
+  - {fileID: 7286202439874854051, guid: 13fe6f35dd1f4614bae6b43a4cfeac3a, type: 3}
+  - {fileID: 7708978840067636726, guid: 9a0ae8605fafe4c4a955460ebbd68d8e, type: 3}
+  legendaryUpgradeSelection:
+  - {fileID: 3678836704855490936, guid: ede040ae2ded04f43a6b435ae33e1fb0, type: 3}
+  wayPoint1: {fileID: 0}
+  wayPoint2: {fileID: 0}
+  wayPoint3: {fileID: 0}
+  canvas: {fileID: 0}
+  alreadySelected: []
+  spawner: {fileID: 0}

@@ -9,9 +9,11 @@ public class SceneManager : MonoBehaviour
     public GameObject loseCanvas;
     public Fade fadeScript;
     bool fading = false;
-    public void NextScene(){
+    int thisScene = 0;
+    public void GoToScene(int scene){
         if(fading == false){
         fading = true;
+        thisScene = scene;
         StartCoroutine(fadeNextScene());
         }   
     }
@@ -19,7 +21,7 @@ public class SceneManager : MonoBehaviour
     IEnumerator fadeNextScene(){
         fadeScript.FadeOut();
         yield return new WaitForSeconds(1);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(thisScene);
         UnityEngine.Time.timeScale = 1;
     }
     public void GoToFirstScene(){
