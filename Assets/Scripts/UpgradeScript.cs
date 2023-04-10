@@ -23,7 +23,8 @@ public class UpgradeScript : MonoBehaviour
     public EnemySpawner spawner;
 
     void Start(){
-        playerScript = GameObject.Find("Player").GetComponent<Player>();
+        //find playerscript (find through tag 'player')
+        playerScript = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
 
     public void InstantiateUpgrades(float rarity){

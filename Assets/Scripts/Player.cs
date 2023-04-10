@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     public float burnDamage = 0f;
     public bool homing = false;
     public float multishot = 1f;
+    public string playerType = "rocket";
+    public float lazerRot = 0f;
+    public float lazerRotSpeed = 360f;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +43,17 @@ public class Player : MonoBehaviour
         if(GetClosestEnemy(this.transform)){
             //shoot mutlishot projectiles
             for(int i = 0; i < multishot; i++){
-                GameObject proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
+                GameObject proj = null;
+                if(playerType == "lazer"){
+                    proj = Instantiate(projectile, firePoint.position, Quaternion.Euler(0, 0, lazerRot));
+                    lazerRot += (1f / updateSpeed) * lazerRotSpeed;
+                }
+                else{
+                    proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
+                }
+                if(proj == null){
+                    return;
+                }
                 proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
                 proj.GetComponent<Projectile>().damage = damage;
                 proj.GetComponent<Projectile>().speed = projectileSpeed;
@@ -81,6 +94,12 @@ public class Player : MonoBehaviour
 
     void ManualUpdate()
     {
+        if(playerType == "lazer"){
+            lazerRot += (1f / updateSpeed) * lazerRotSpeed;
+            if(lazerRot > 360f){
+                lazerRot -= 360f;
+            }
+        }
         //update range indicator
         rangeIndicator.transform.localScale = new Vector3(range * 1.9f, range * 1.9f, 1);
         //move player

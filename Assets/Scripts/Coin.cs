@@ -10,7 +10,7 @@ public class Coin : MonoBehaviour
     public Rigidbody2D rb;
     public float speed = 1f;
     void Start(){
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     void FixedUpdate()

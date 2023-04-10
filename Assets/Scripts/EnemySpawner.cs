@@ -20,6 +20,8 @@ public class EnemySpawner : MonoBehaviour
     public float[] upgradeRarities;
     public SceneManager sceneManager;
     public TextMeshProUGUI waveText;
+    public float extraEnemies = 1f;
+    public float fasterSpawn = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -79,8 +81,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void UpdateValuesToWave(){
         enemyPrefab = waves[(int)waveNum - 1].enemy;
-        spawnSpeed = waves[(int)waveNum - 1].spawnRate;
-        enemiesLeft = waves[(int)waveNum - 1].numberOfEnemies;
+        spawnSpeed = waves[(int)waveNum - 1].spawnRate / fasterSpawn;
+        enemiesLeft = UnityEngine.Mathf.Floor(waves[(int)waveNum - 1].numberOfEnemies * extraEnemies);
         enemyHp = waves[(int)waveNum - 1].enemyHp;
         enemySpeed = waves[(int)waveNum - 1].enemySpeed;
     }

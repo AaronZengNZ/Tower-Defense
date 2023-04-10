@@ -67,6 +67,7 @@ MonoBehaviour:
   - {fileID: 7708978840067636726, guid: 9a0ae8605fafe4c4a955460ebbd68d8e, type: 3}
   legendaryUpgradeSelection:
   - {fileID: 3678836704855490936, guid: ede040ae2ded04f43a6b435ae33e1fb0, type: 3}
+  - {fileID: 3678836704855490936, guid: 6939534ccab95224e90c0ce81cca02fb, type: 3}
   wayPoint1: {fileID: 0}
   wayPoint2: {fileID: 0}
   wayPoint3: {fileID: 0}

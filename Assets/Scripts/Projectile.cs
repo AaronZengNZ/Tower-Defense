@@ -21,6 +21,9 @@ public class Projectile : MonoBehaviour
     public float noTurning = 10f;
     public float burnDamage = 0f;
     public GameObject damageText;
+    public bool noTurn = false;
+    float life = 250f;
+    float colliderActivate = 3f;
 
     void Start(){
         //set size to damage
@@ -32,23 +35,38 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(ManualUpdateAutomator());
         spriteRenderer = GetComponent<SpriteRenderer>();
-        if(target != null){
-            float direction;
-            //random number from -10 to 10
-            float random = UnityEngine.Random.Range(-10f, 10f);
-            if(playerScript.isRight){
-                direction = 120 + random;
+        if(noTurn == false){
+            if(target != null){
+                float direction;
+                //random number from -10 to 10
+                float random = UnityEngine.Random.Range(-10f, 10f);
+                if(playerScript.isRight){
+                    direction = 120 + random;
+                }
+                else{
+                    direction = 60 + random;
+                }
+                Quaternion rotation = Quaternion.AngleAxis(direction, Vector3.forward);
+                transform.rotation = rotation;
             }
-            else{
-                direction = 60 + random;
-            }
-            Quaternion rotation = Quaternion.AngleAxis(direction, Vector3.forward);
-            transform.rotation = rotation;
-
         }
     }
     void ManualUpdate()
     {
+        if(noTurn == true){
+            rb.velocity = transform.right * speed;
+            if(colliderActivate <= 0){
+                circleCollider.enabled = true;
+            }
+            else{
+                colliderActivate --;
+            }
+            life -= 1;
+            if(life <= 0){
+                Destroy(gameObject);
+            }
+            return;
+        }
         if(noTurning >= 0){
             noTurning -= speed;
             rb.velocity = transform.right * speed;
