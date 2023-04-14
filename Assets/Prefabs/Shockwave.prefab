@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5780303902236623420}
   - component: {fileID: -1109024569182944653}
   m_Layer: 3
-  m_Name: Projectile
+  m_Name: Shockwave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: 7e92bbea2444de948a42f9ce04a30cc5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9ed87bb2453ff34c92c6fc57504caaf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 25
+  speed: 4
   damage: 1
   freezeEffect: 0
   stun: 0
@@ -113,6 +113,7 @@ MonoBehaviour:
   noTurning: 10
   burnDamage: 0
   damageText: {fileID: 5473043425520070282, guid: 1da0628ba6d99c84b8d1814bb9d932a5, type: 3}
+  noTurn: 1
 --- !u!58 &5780303902236623420
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -123,7 +124,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

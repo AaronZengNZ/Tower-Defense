@@ -849,7 +849,7 @@ MonoBehaviour:
   - 25
   sceneManager: {fileID: 718061438}
   waveText: {fileID: 1475270656}
-  extraEnemies: 1.75
+  extraEnemies: 2.25
   fasterSpawn: 1.75
 --- !u!1 &305015712
 GameObject:
@@ -2693,6 +2693,7 @@ MonoBehaviour:
   moneys: 0
   players: []
   playerNum: 1
+  playerPrefs: {fileID: 0}
 --- !u!114 &668684481
 MonoBehaviour:
   m_ObjectHideFlags: 0

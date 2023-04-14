@@ -109,8 +109,16 @@ public class Projectile : MonoBehaviour
     }
 
     // on collision with tag enemy, hit target
-    private void OnCollisionEnter2D(Collision2D other) {
+    //change the oncollisionenter to a ontriggerenter
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(target == null || other.gameObject == null && homing == true){
+            return;
+        }
         if(other.gameObject.tag == "Enemy"){
+            //do a null check on target and other's gameObjects
+            if(noTurn == false && other.gameObject != target.gameObject){
+                return;
+            }
             other.gameObject.GetComponent<Enemy>().TakeDamage(damage);
             //instantiate a damage text at 0 degrees rotation
             GameObject damageTextInstance = Instantiate(damageText, this.transform.position, Quaternion.Euler(0, 0, 0));

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4371675304559877993}
   - component: {fileID: 4371675304559877994}
   m_Layer: 6
-  m_Name: Lazer Boi
+  m_Name: Shockwave Boi
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 3207c79646241cc449bebfcf9a3dace4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c8dd42c30c0d3fd4ca08a21940474c0f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,11 +102,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  projectile: {fileID: 5780303902236623419, guid: 50032490bb1eeed4ebfc42144514ebf6, type: 3}
-  shootSpeed: 10
+  projectile: {fileID: 5780303902236623419, guid: 6f27cb7912c542346921f6562ba4e9c2, type: 3}
+  shootSpeed: 2
   range: 8
-  damage: 2
-  projectileSpeed: 10
+  damage: 3
+  projectileSpeed: 6
   sprite: {fileID: 4371675304559877995}
   firePoint: {fileID: 4371675306081911600}
   isRight: 0
@@ -118,9 +118,10 @@ MonoBehaviour:
   burnDamage: 0
   homing: 0
   multishot: 1
-  playerType: lazer
+  playerType: shockwave
   lazerRot: 0
   lazerRotSpeed: 100
+  shockwaveProjectiles: 12
 --- !u!61 &4371675304559877993
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +139,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8, y: 1.8}
+    oldSize: {x: 1.8045113, y: 1.8045113}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

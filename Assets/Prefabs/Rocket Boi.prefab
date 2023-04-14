@@ -218,10 +218,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   projectile: {fileID: 5780303902236623419, guid: 13b42456b6ba8d34bb9fcc3470ef413e, type: 3}
-  shootSpeed: 1.5
+  shootSpeed: 2
   range: 4
-  damage: 3
-  projectileSpeed: 5.5
+  damage: 2.5
+  projectileSpeed: 6
   sprite: {fileID: 5777301167436419443}
   firePoint: {fileID: 5777301165779008940}
   isRight: 0

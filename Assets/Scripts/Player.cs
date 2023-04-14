@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public string playerType = "rocket";
     public float lazerRot = 0f;
     public float lazerRotSpeed = 360f;
+    public float shockwaveProjectiles = 36f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,13 +35,16 @@ public class Player : MonoBehaviour
 
     IEnumerator ShootProjectiles(){
         while(true){
+            if(playerType == "shockwave"){
+                yield return new WaitForSeconds(4 / shootSpeed);
+            }
             yield return new WaitForSeconds(1 / shootSpeed);
             ShootProjectile();
         }
     }
 
     public void ShootProjectile(){
-        if(GetClosestEnemy(this.transform)){
+                if(GetClosestEnemy(this.transform)){
             //shoot mutlishot projectiles
             for(int i = 0; i < multishot; i++){
                 GameObject proj = null;
@@ -48,11 +52,26 @@ public class Player : MonoBehaviour
                     proj = Instantiate(projectile, firePoint.position, Quaternion.Euler(0, 0, lazerRot));
                     lazerRot += (1f / updateSpeed) * lazerRotSpeed;
                 }
+                else if (playerType == "shockwave"){
+                    float angle = 0f;
+                    for(int f = 0; f < shockwaveProjectiles * multishot; f++){
+                        proj = Instantiate(projectile, firePoint.position, Quaternion.Euler(0, 0, angle));
+                        proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
+                        proj.GetComponent<Projectile>().damage = damage;
+                        proj.GetComponent<Projectile>().speed = projectileSpeed;
+                        proj.GetComponent<Projectile>().playerScript = this;
+                        proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
+                        proj.GetComponent<Projectile>().stun = stun;
+                        proj.GetComponent<Projectile>().burnDamage = burnDamage;
+                        proj.GetComponent<Projectile>().homing = homing;
+                        angle += 360f / (shockwaveProjectiles * multishot);
+                    }
+                }
                 else{
                     proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
                 }
                 if(proj == null){
-                    return;
+                    break;
                 }
                 proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
                 proj.GetComponent<Projectile>().damage = damage;
