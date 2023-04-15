@@ -115,7 +115,6 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float damage){
-        UnityEngine.Debug.Log("hit");
         hp -= damage;
         if(hp <= 0){
             Destroy(gameObject);
