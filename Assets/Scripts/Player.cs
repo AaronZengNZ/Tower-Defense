@@ -53,7 +53,8 @@ public class Player : MonoBehaviour
                     lazerRot += (1f / updateSpeed) * lazerRotSpeed;
                 }
                 else if (playerType == "shockwave"){
-                    float angle = 0f;
+                    //make angle start with a random value from 0 to 360f / (shockwaveProjectiles * multishot)
+                    float angle = UnityEngine.Random.Range(0f, 360f / (shockwaveProjectiles * multishot));
                     for(int f = 0; f < shockwaveProjectiles * multishot; f++){
                         proj = Instantiate(projectile, firePoint.position, Quaternion.Euler(0, 0, angle));
                         proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);

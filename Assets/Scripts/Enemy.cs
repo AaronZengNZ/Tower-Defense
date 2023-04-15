@@ -68,6 +68,7 @@ public class Enemy : MonoBehaviour
         moveSpeed = 0f;
         yield return new WaitForSeconds(time);
         moveSpeed = temp;
+        yield return new WaitForSeconds(0.1f);
         stunned = false;
     }
 

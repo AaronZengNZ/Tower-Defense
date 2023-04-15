@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
     public float burnDamage = 0f;
     public GameObject damageText;
     public bool noTurn = false;
-    float life = 250f;
+    float life = 100f;
     float colliderActivate = 3f;
 
     void Start(){
@@ -79,7 +79,11 @@ public class Projectile : MonoBehaviour
         //rb.velocity = rb.velocity / 1.2f;
         if(target == null){
             if(homing == true){
-            target = playerScript.GetClosestEnemy(this.transform);
+                target = playerScript.GetClosestEnemy(this.transform);
+                spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - 0.025f);
+                if(spriteRenderer.color.a <= 0){
+                    Destroy(gameObject);
+                }
             }
             else{
                 spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, spriteRenderer.color.a - 0.04f);
@@ -90,7 +94,8 @@ public class Projectile : MonoBehaviour
             return;
         }
         else{
-            //slow turn towards the target
+            //full opacity
+            spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 1);
             Vector2 direction = (target.position - transform.position).normalized;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);

@@ -106,7 +106,7 @@ MonoBehaviour:
   stun: 0
   playerScript: {fileID: 0}
   circleCollider: {fileID: 5780303902236623420}
-  turnSpeed: 25
+  turnSpeed: 36
   rb: {fileID: -1109024569182944653}
   spriteRenderer: {fileID: 0}
   homing: 0

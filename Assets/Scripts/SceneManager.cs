@@ -31,6 +31,9 @@ public class SceneManager : MonoBehaviour
     public void Win(){
         winCanvas.SetActive(true);
         UnityEngine.Time.timeScale = 0;
+        //find playerprefs script and call beatlevel with the current scene number
+        PlayerPrefs playerPrefs = GameObject.Find("PlayerPrefs").GetComponent<PlayerPrefs>();
+        playerPrefs.BeatLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
     public void Lose(){
         loseCanvas.SetActive(true);

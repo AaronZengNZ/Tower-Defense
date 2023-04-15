@@ -63,7 +63,6 @@ MonoBehaviour:
   epicUpgradeSelection:
   - {fileID: 6339902209260130926, guid: 1a671981881e7eb4ab4956d252c20382, type: 3}
   - {fileID: 4084785594399172113, guid: 1b56b6581572ac3408cd6170ee4cdcca, type: 3}
-  - {fileID: 7286202439874854051, guid: 13fe6f35dd1f4614bae6b43a4cfeac3a, type: 3}
   - {fileID: 7708978840067636726, guid: 9a0ae8605fafe4c4a955460ebbd68d8e, type: 3}
   legendaryUpgradeSelection:
   - {fileID: 3678836704855490936, guid: ede040ae2ded04f43a6b435ae33e1fb0, type: 3}

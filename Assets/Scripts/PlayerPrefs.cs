@@ -6,7 +6,6 @@ public class PlayerPrefs : MonoBehaviour
 {
     public float startGold = 0f;
     public MoneyScript moneyScript;
-    public bool Override0 = true;
     void Awake()
     {
         //find moneyscript
@@ -22,10 +21,18 @@ public class PlayerPrefs : MonoBehaviour
         else{
             moneyScript.moneys = GetFloatPref("Gold");
         }
+        if(CheckIfPrefExists("LevelsBeat") == false){
+            CreatePref("LevelsBeat", 0f);
+        }
     }
 
     public bool CheckIfPrefExists(string key){
         return UnityEngine.PlayerPrefs.HasKey(key);
+    }
+    public void BeatLevel(float level){
+        if(GetFloatPref("LevelsBeat") < level){
+            SetPref("LevelsBeat", level);
+        }
     }
     public void SetPref(string key, float amount){
         if(CheckIfPrefExists(key)){
