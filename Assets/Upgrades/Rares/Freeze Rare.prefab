@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '
 
-    (stacks 5 times, total of x0.33 enemy speed)'
+    (stacks 5 times, total of x0.6 enemy speed)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
   m_sharedMaterial: {fileID: 1036066643563055347, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffEffect: freeze
   debuffEffect: 
-  buffAmount: 20
+  buffAmount: 10
   debuffAmount: 0
   hasDebuff: 0
   upgradeManager: {fileID: 0}
@@ -824,9 +824,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Enemies slow down by 20% per hit
-
-'
+  m_text: Slow down enemies by 10% each hit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
   m_sharedMaterial: {fileID: 1036066643563055347, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}

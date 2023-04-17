@@ -4945,11 +4945,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  moveSpeed: 2.75
+  moveSpeed: 2.25
   currentWaypoint: 0
-  hp: 100
+  hp: 150
   distance: 0
-  moneyOnDeath: 7
+  moneyOnDeath: 10
   sprite: {fileID: 4897556727403769826}
   deathCoin: {fileID: 4189879942782351902, guid: 4c0b32d5dfb760744aa041368414c397, type: 3}
   coinSpewForce: 7
@@ -4987,7 +4987,7 @@ BoxCollider2D:
   m_EdgeRadius: 0
 --- !u!95 &4981613865190086959
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5004,4 +5004,5 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

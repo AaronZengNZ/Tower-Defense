@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
     }
     void FixedUpdate()
     {
-        distance++;
+        distance+=moveSpeed;
     }
 
     public void Stun(float time){
