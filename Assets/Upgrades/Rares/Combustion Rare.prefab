@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: (Ticks 10 times over 3 seconds for 10 damage each tick)
+  m_text: (Ticks 10 times over 3 seconds for 25 damage each tick)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
   m_sharedMaterial: {fileID: 1036066643563055347, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Deals 100 fire damage over 3 seconds
+  m_text: Deals 250 fire damage over 3 seconds
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
   m_sharedMaterial: {fileID: 1036066643563055347, guid: 29f6d1d4ae3fbca43bf3b902f125fd25, type: 2}
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buffEffect: fire
   debuffEffect: 
-  buffAmount: 1
+  buffAmount: 2.5
   debuffAmount: 0
   hasDebuff: 0
   upgradeManager: {fileID: 0}

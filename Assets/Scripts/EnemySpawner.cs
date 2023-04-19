@@ -9,10 +9,12 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform[] waypoints;
+    public Transform[] waypoints2;
     public float enemyHp = 3f;
     public float enemySpeed = 2f;
     public float spawnSpeed = 1f;   
     public Wave[] waves;
+    public float[] pathNum;
     public float waveNum = 1f;
     float enemiesLeft = 0f;
     public UpgradeScript upgrades;
@@ -88,10 +90,28 @@ public class EnemySpawner : MonoBehaviour
     }
 
     public void SpawnEnemy(){
-        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        enemy.GetComponent<Enemy>().waypoints = waypoints;
-        enemy.GetComponent<Enemy>().hp = enemyHp;
-        enemy.GetComponent<Enemy>().moveSpeed = enemySpeed;
-        
+        //if pathnum is 10, spawn it on both lanes
+        if(pathNum[(int)waveNum - 1] == 10){
+            GameObject enemy = Instantiate(enemyPrefab, waypoints[0].position, Quaternion.identity);
+            enemy.GetComponent<Enemy>().waypoints = waypoints;
+            enemy.GetComponent<Enemy>().hp = enemyHp;
+            enemy.GetComponent<Enemy>().moveSpeed = enemySpeed;
+            GameObject enemy2 = Instantiate(enemyPrefab, waypoints2[0].position, Quaternion.identity);
+            enemy2.GetComponent<Enemy>().waypoints = waypoints2;
+            enemy2.GetComponent<Enemy>().hp = enemyHp;
+            enemy2.GetComponent<Enemy>().moveSpeed = enemySpeed;
+        }
+        else if(pathNum[(int)waveNum - 1] == 2){
+            GameObject enemy = Instantiate(enemyPrefab, waypoints2[0].position, Quaternion.identity);
+            enemy.GetComponent<Enemy>().waypoints = waypoints2;
+            enemy.GetComponent<Enemy>().hp = enemyHp;
+            enemy.GetComponent<Enemy>().moveSpeed = enemySpeed;
+        }
+        else{
+            GameObject enemy = Instantiate(enemyPrefab, waypoints[0].position, Quaternion.identity);
+            enemy.GetComponent<Enemy>().waypoints = waypoints;
+            enemy.GetComponent<Enemy>().hp = enemyHp;
+            enemy.GetComponent<Enemy>().moveSpeed = enemySpeed;
+        }
     }
 }

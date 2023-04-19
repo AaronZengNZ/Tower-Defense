@@ -15,7 +15,7 @@ public class LevelLength : MonoBehaviour
 
     private float CalculateLevelLength(){
         float length = 0f;
-        if(waypoints.Length == 0){
+        if(waypoints == null){
             return 0f;
         }
         for(int i = 0; i < waypoints.Length - 1; i++){

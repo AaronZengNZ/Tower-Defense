@@ -20,12 +20,16 @@ public class Enemy : MonoBehaviour
     public ParticleSystem fireEffect;
     public SceneManager sceneManagerScript;
     public GameObject damageText;
+    public bool flash = false;
     // Start is called before the first frame update
     void Start()
     {
         transform.position = waypoints[0].transform.position;
         StartCoroutine(BurnCoroutine());
         sceneManagerScript = GameObject.Find("SceneManager").GetComponent<SceneManager>();
+        if(flash == true){
+            StartCoroutine(FlashGoblin());
+        }
     }
 
     public void Burn(float damage){
@@ -43,6 +47,16 @@ public class Enemy : MonoBehaviour
                 fireEffect.Play();
             }
             yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    IEnumerator FlashGoblin(){
+        while(true){
+            //wait a random time between 0.05 to 0.25 seconds
+            yield return new WaitForSeconds(Random.Range(0.05f, 0.25f));
+            sprite.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0f);
+             yield return new WaitForSeconds(Random.Range(0.02f, 0.1f));
+            sprite.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
         }
     }
 
@@ -101,7 +115,7 @@ public class Enemy : MonoBehaviour
         else{
             moneyOnDeath = 0f;
             //call lose
-            sceneManagerScript.Lose();
+            sceneManagerScript.Lose(hp);
             Destroy(gameObject);
         }
     }

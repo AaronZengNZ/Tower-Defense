@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class SceneManager : MonoBehaviour
 {
@@ -10,12 +12,20 @@ public class SceneManager : MonoBehaviour
     public Fade fadeScript;
     bool fading = false;
     int thisScene = 0;
+    public float lives = -100f;
+    public TextMeshProUGUI livesText;
+
     public void GoToScene(int scene){
         if(fading == false){
         fading = true;
         thisScene = scene;
         StartCoroutine(fadeNextScene());
         }   
+    }
+    void Update(){
+        if(lives > -1f){
+            livesText.text = lives.ToString();
+        }
     }
 
     IEnumerator fadeNextScene(){
@@ -35,8 +45,11 @@ public class SceneManager : MonoBehaviour
         PlayerPrefs playerPrefs = GameObject.Find("PlayerPrefs").GetComponent<PlayerPrefs>();
         playerPrefs.BeatLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
-    public void Lose(){
-        loseCanvas.SetActive(true);
-        UnityEngine.Time.timeScale = 0;
+    public void Lose(float dmg){
+        lives -= Mathf.Ceil(dmg * 10f);
+        if(lives <= 0){
+            loseCanvas.SetActive(true);
+            UnityEngine.Time.timeScale = 0;
+        }
     }
 }

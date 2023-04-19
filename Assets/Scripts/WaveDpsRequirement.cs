@@ -10,6 +10,7 @@ public class WaveDpsRequirement : MonoBehaviour
     public float enemySpawntime = 1f;
     public float enemySpeed = 1f;
     public float pathLength = 1f;
+    public float enemyGroupSize = 1f;
     public float dpsRequirement = 0f;
 
     void Update()
@@ -20,7 +21,7 @@ public class WaveDpsRequirement : MonoBehaviour
     private float CalculateDpsRequirement(){
         //now multiply timetoKillBeforeNext by the number of enemies
         float softtimeForEnemy = pathLength / enemies / enemySpeed;
-        float requirement = enemyHp / (enemySpawntime + softtimeForEnemy);
+        float requirement = enemyHp * enemyGroupSize / (enemySpawntime + softtimeForEnemy);
         return requirement;
     }
 }
