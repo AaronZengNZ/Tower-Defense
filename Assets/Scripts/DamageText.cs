@@ -17,7 +17,8 @@ public class DamageText : MonoBehaviour
         StartCoroutine(FadeAway());
     }
     void Update(){
-        text.text = UnityEngine.Mathf.Ceil(number*10).ToString();
+        //make text the floor instead of ciel text.text = UnityEngine.Mathf.Ceil(number*10).ToString();
+        text.text = UnityEngine.Mathf.Floor(number*10).ToString();
     }
 
     IEnumerator FadeAway(){

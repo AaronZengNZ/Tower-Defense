@@ -46,7 +46,8 @@ public class SceneManager : MonoBehaviour
         playerPrefs.BeatLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
     public void Lose(float dmg){
-        lives -= Mathf.Ceil(dmg * 10f);
+        //decrease hp by dmg squared / 10 cieling
+        lives -= Mathf.Ceil(dmg * dmg / 10f);
         if(lives <= 0){
             loseCanvas.SetActive(true);
             UnityEngine.Time.timeScale = 0;
