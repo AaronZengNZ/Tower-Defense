@@ -23,7 +23,12 @@ public class Projectile : MonoBehaviour
     public GameObject damageText;
     public bool noTurn = false;
     float life = 100f;
-    float colliderActivate = 3f;
+    public float colliderActivate = 3f;
+    public bool lightning = false;
+    public GameObject[] enemiesChained;
+    public TrailRenderer trail;
+    public float chainDistance = 20f;
+    public GameObject lightningTarget;
 
     void Start(){
         //set size to damage
@@ -48,6 +53,15 @@ public class Projectile : MonoBehaviour
                 }
                 Quaternion rotation = Quaternion.AngleAxis(direction, Vector3.forward);
                 transform.rotation = rotation;
+            }
+        }
+        
+    }
+    void Update(){
+        if(lightning){
+            GameObject player = GameObject.FindWithTag("Player");
+            if(Vector2.Distance(transform.position, player.transform.position) > playerScript.range){
+                Destroy(gameObject);
             }
         }
     }
@@ -110,6 +124,14 @@ public class Projectile : MonoBehaviour
         while(true){
             yield return new WaitForSeconds(0.05f);
             ManualUpdate();
+        }
+    }
+     void OnDestroy()
+    {
+        if(lightning){
+            trail.transform.parent = null;
+            trail.autodestruct = true;
+            trail = null;
         }
     }
 

@@ -26,6 +26,11 @@ public class Player : MonoBehaviour
     public float lazerRot = 0f;
     public float lazerRotSpeed = 360f;
     public float shockwaveProjectiles = 36f;
+    public float damagePercent = 100f;
+    public float fireratePercent = 100f;
+    public float rangePercent = 100f;
+    public float bulletSpeedPercent = 100f;
+    public float processedRange = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,16 +40,19 @@ public class Player : MonoBehaviour
 
     IEnumerator ShootProjectiles(){
         while(true){
+            float processedShootSpeed = shootSpeed * fireratePercent / 100f;
             if(playerType == "shockwave"){
-                yield return new WaitForSeconds(4 / shootSpeed);
+                yield return new WaitForSeconds(4 / processedShootSpeed);
             }
-            yield return new WaitForSeconds(1 / shootSpeed);
+            yield return new WaitForSeconds(1 / processedShootSpeed);
             ShootProjectile();
         }
     }
 
     public void ShootProjectile(){
-                if(GetClosestEnemy(this.transform)){
+        float processedDamage = damage * damagePercent / 100f;
+        float processedProjectileSpeed = projectileSpeed * bulletSpeedPercent / 100f;
+        if(GetClosestEnemy(this.transform)){
             //shoot mutlishot projectiles
             for(int i = 0; i < multishot; i++){
                 GameObject proj = null;
@@ -55,11 +63,11 @@ public class Player : MonoBehaviour
                 else if (playerType == "shockwave"){
                     //make angle start with a random value from 0 to 360f / (shockwaveProjectiles * multishot)
                     float angle = UnityEngine.Random.Range(0f, 360f / (shockwaveProjectiles * multishot));
-                    for(int f = 0; f < shockwaveProjectiles * multishot; f++){
+                    for(int f = 0; f < shockwaveProjectiles * (multishot / 2 + 0.5f); f++){
                         proj = Instantiate(projectile, firePoint.position, Quaternion.Euler(0, 0, angle));
                         proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
-                        proj.GetComponent<Projectile>().damage = damage;
-                        proj.GetComponent<Projectile>().speed = projectileSpeed;
+                        proj.GetComponent<Projectile>().damage = processedDamage;
+                        proj.GetComponent<Projectile>().speed = processedProjectileSpeed;
                         proj.GetComponent<Projectile>().playerScript = this;
                         proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
                         proj.GetComponent<Projectile>().stun = stun;
@@ -68,6 +76,32 @@ public class Player : MonoBehaviour
                         angle += 360f / (shockwaveProjectiles * multishot);
                     }
                 }
+                else if(playerType == "lightning"){
+                    //instantiate a projectile for every enemy and make it point towards said enemy
+                    float chains = 0f;
+                    foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")){
+                        float distance = Vector2.Distance(firePoint.position, enemy.transform.position);
+                        if(chains >= 5){
+                            return;
+                        }
+                        if(distance <= processedRange){
+                            chains++;
+                            proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
+                            Vector3 dir = enemy.transform.position - firePoint.position;
+                            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                            proj.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+                            proj.GetComponent<Projectile>().target = enemy.transform;
+                            proj.GetComponent<Projectile>().damage = processedDamage / 25f;
+                            proj.GetComponent<Projectile>().speed = processedProjectileSpeed;
+                            proj.GetComponent<Projectile>().playerScript = this;
+                            proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
+                            proj.GetComponent<Projectile>().stun = stun;
+                            proj.GetComponent<Projectile>().burnDamage = burnDamage;
+                            proj.GetComponent<Projectile>().homing = homing;
+                        }
+                    }
+                    return;
+                }
                 else{
                     proj = Instantiate(projectile, firePoint.position, Quaternion.identity);
                 }
@@ -75,8 +109,8 @@ public class Player : MonoBehaviour
                     break;
                 }
                 proj.GetComponent<Projectile>().target = GetClosestEnemy(this.transform);
-                proj.GetComponent<Projectile>().damage = damage;
-                proj.GetComponent<Projectile>().speed = projectileSpeed;
+                proj.GetComponent<Projectile>().damage = processedDamage;
+                proj.GetComponent<Projectile>().speed = processedProjectileSpeed;
                 proj.GetComponent<Projectile>().playerScript = this;
                 proj.GetComponent<Projectile>().freezeEffect = freezeEffect;
                 proj.GetComponent<Projectile>().stun = stun;
@@ -91,7 +125,7 @@ public class Player : MonoBehaviour
         float furthestDistance = 0;
         foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy")){
             float distance = Vector2.Distance(startPoint.position, enemy.transform.position);
-            if(distance <= range){
+            if(distance <= processedRange){
                 //compare enemy's enemy script's distnace to furthest distance
                 if(enemy.GetComponent<Enemy>().distance > furthestDistance){
                     furthestDistance = enemy.GetComponent<Enemy>().distance;
@@ -114,6 +148,8 @@ public class Player : MonoBehaviour
 
     void ManualUpdate()
     {
+        //update processedRange
+        processedRange = range * rangePercent / 100f;
         if(playerType == "lazer"){
             lazerRot += (1f / updateSpeed) * lazerRotSpeed;
             if(lazerRot > 360f){
@@ -121,7 +157,7 @@ public class Player : MonoBehaviour
             }
         }
         //update range indicator
-        rangeIndicator.transform.localScale = new Vector3(range * 1.9f, range * 1.9f, 1);
+        rangeIndicator.transform.localScale = new Vector3(processedRange * 1.9f, processedRange * 1.9f, 1);
         //move player
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");

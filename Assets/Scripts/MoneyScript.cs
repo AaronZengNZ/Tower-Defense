@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class MoneyScript : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class MoneyScript : MonoBehaviour
     public GameObject getPlayer(){
         return players[(int)playerNum - 1];
     }
+    public void Erase(){
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        moneys = 0f;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -34,5 +39,13 @@ public class MoneyScript : MonoBehaviour
         }
         prevMoneys = moneys;
         moneyText.text = moneys.ToString();
+        //if cost is over 1000, divide by 1000 and add k (round to 1 digit, floor)
+        if(moneys > 1000f){
+            moneyText.text = (Mathf.Floor(moneys / 100f) / 10f).ToString() + "k";
+        }
+        //if cost over 100000, round with no decimals (floor)
+        if(moneys > 100000f){
+            moneyText.text = Mathf.Floor(moneys / 1000f).ToString() + "k";
+        }
     }
 }
